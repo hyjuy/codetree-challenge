@@ -35,7 +35,24 @@ int main() {
             cin >> board[i][j];
         }
     }
-    findPath(0,0,0);
+    
+     for(int r1 = 1; r1 < R - 1; r1++) {
+        for(int c1 = 1; c1 < C - 1; c1++) {
+
+            if(board[0][0] == board[r1][c1]) continue;
+
+            for(int r2 = r1 + 1; r2 < R - 1; r2++) {
+                for(int c2 = c1 + 1; c2 < C - 1; c2++) {
+
+                    if(board[r1][c1] == board[r2][c2]) continue;
+                    if(board[r2][c2] == board[R - 1][C - 1]) continue;
+
+                    ans++;
+                }
+            }
+        }
+    }
+    
     cout << ans;
     return 0;
 }
