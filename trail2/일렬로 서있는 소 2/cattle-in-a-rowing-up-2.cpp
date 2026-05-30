@@ -6,26 +6,26 @@ int main() {
     // Please write your code here.
     int n; cin >> n;
     vector <int> cow(n, 0);
-    vector <vector<int>> cmp_cow(n);
-
     for(int i = 0; i < n; i++){
         cin >> cow[i];
     }
+    vector<long long> dp2(n, 0);
+    long long ans = 0;
 
-    for(int i = 0; i < n; i++){
-        for(int j = i + 1; j < n; j++){
-            if(cow[i] <= cow[j]) cmp_cow[i].push_back(j);
+    for(int j = 0; j < n; j++){
+        for(int i = 0; i < j; i++){
+            if(cow[i] <= cow[j]){
+                dp2[j]++;
+            }
         }
     }
 
-    int ans = 0;
-
-    for(int i = 0; i < n; i++){
-        int temp = 0;
-        for(int j : cmp_cow[i]){
-            temp += cmp_cow[j].size();
+    for(int k = 0; k < n; k++){
+        for(int j = 0; j < k; j++){
+            if(cow[j] <= cow[k]){
+                ans += dp2[j];
+            }
         }
-        ans += temp;
     }
     cout << ans;
     return 0;
