@@ -2,21 +2,22 @@
 using namespace std;
 
 int R, C; 
-char map[15][15];
+char board[15][15];
 int ans = 0;
 
 void findPath(int r, int c, int step){
-    if(r == R - 1 && c == C - 1 && step == 3){
-        ans++;
+    if(r == R - 1 && c == C - 1){
+        if(step == 3) ans++;
         return;
     }
-    if(r == R - 1 || c == C - 1)return;
 
-    char cur = map[r][c];
+    if(step == 3)return;
+
+    char cur = board[r][c];
 
     for(int i = r + 1; i < R; i++){
         for(int j = c + 1; j < C; j++){
-            if((cur == 'W' && map[i][j] == 'B') || (cur == 'B' && map[i][j] == 'W')){
+            if(cur != board[i][j]){
                 findPath(i,j,step+1);
             }
         }
@@ -31,7 +32,7 @@ int main() {
 
     for(int i = 0; i < R; i++){
         for(int j = 0; j < C; j++){
-            cin >> map[i][j];
+            cin >> board[i][j];
         }
     }
     findPath(0,0,0);
