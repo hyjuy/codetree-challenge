@@ -8,8 +8,7 @@ struct Node {
 vector <int> selected;
 int n;
 int ans = 0;
-void choose(int curr, int cnt, vector<Node>*v) {
-    if(curr > n) return;
+void choose(int curr, int cnt, vector<Node>*v) {   
     if (cnt == 3) {
         int i1 = selected[0];
         int i2 = selected[1];
@@ -30,6 +29,8 @@ void choose(int curr, int cnt, vector<Node>*v) {
         }
         return;
     }
+
+    if(curr == n) return;
     selected.push_back(curr);
     choose(curr + 1, cnt + 1, v);
     selected.pop_back();
