@@ -22,7 +22,7 @@ void choose(int curr, int cnt, vector<Node>*v) {
         int y2 = (*v)[i2].y;
         int y3 = (*v)[i3].y;
 
-        if ((x1==x2 && (y1==y3||y2==y3)) ||(x1==x3 &&(y1==y2||y2==y3))||(x2==x3&&(y2==y1||y3==y1))){;
+        if ((x1 == x2 || x1 == x3 || x2 == x3) &&(y1==y2||y1==y3||y2==y3)){;
 
         int temp_size = x1 * y2 + x2 * y3 + x3 * y1 - (x2 * y1 + x3 * y2 + x1 * y3);
         ans = max(abs(temp_size), ans);
